@@ -21,6 +21,9 @@ var Enemy = function(x,y,speed) {
 Enemy.prototype.update = function(dt) {
     
     this.x += this.speed * dt;
+    if (this.x > 500){
+        this.x = 0;
+    }
     
 };
 
@@ -38,20 +41,38 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
-var Player = function(){
+var player = function(x,y){
     this.sprite = 'images/char-boy.png'; 
-    this.x = 200;
-    this.y = 400;
+    this.x = x;
+    this.y = y;
 
 };
 
-Player.prototype.update = function(dt){
-    
+
+
+player.prototype.update = function(dt){
 };
 
-Player.prototype.render = function(){
+player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+
+player.prototype.handleInput = function(key) {
+        if (key == 'left'){
+            this.x += -10;
+        }
+        if (key == 'right'){
+            this.x += 10;
+        }
+        if (key == 'up'){
+            this.y += -10;
+        }
+        if (key == 'down'){
+            this.y += 10;
+        }
+};
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -61,11 +82,11 @@ var enemy1 = new Enemy(100,100,5);
 
 allEnemies = [enemy1];
 
-var player = new Player();
+var player = new player(200,400);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keydown', function(e) {
     var allowedKeys = {
         37: 'left',
         38: 'up',
@@ -74,4 +95,5 @@ document.addEventListener('keyup', function(e) {
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
+
 });
