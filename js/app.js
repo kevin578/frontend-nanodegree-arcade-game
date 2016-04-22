@@ -8,7 +8,9 @@ var Enemy = function(x,y,speed) {
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
     this.y = y;
-    this.speed = 50; 
+    this.speed = speed;
+    this.width = 75;
+    this.height = 60;
 };
 
 
@@ -78,10 +80,10 @@ player.prototype.handleInput = function(key) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-var enemy1 = new Enemy(100,100,5);
-
-allEnemies = [enemy1];
-
+var enemy1 = new Enemy(100,145,50);
+var enemey2 = new Enemy(100,225,100);
+var enemey3 = new Enemy(100, 65, 150);
+allEnemies = [enemy1, enemey2, enemey3];
 var player = new player(200,400);
 
 // This listens for key presses and sends the keys to your

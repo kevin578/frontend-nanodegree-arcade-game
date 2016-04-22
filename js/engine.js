@@ -80,7 +80,26 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        
+        //check for collision
+        for (var i = 0;i < allEnemies.length; i++){
+        
+        var x_collision = Math.abs(player.x - allEnemies[i].x);
+        var y_collision = Math.abs(player.y - allEnemies[i].y);
+
+        if (x_collision < allEnemies[i].width && y_collision 
+        < allEnemies[i].height){
+            player.x = 200;
+            player.y = 400;
+        }
+
+        if (player.y < 0){
+            
+
+            alert("You win!");
+            player.x = 200;
+            player.y = 400;        }
+}
     }
 
     /* This is called by the update function and loops through all of the
